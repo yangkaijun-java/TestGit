@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div#mainFrame{
+		width:400px;
+		height:450px;
+		margin:auto;
+		/*background-image: url(E://lyf1.jpg);*/
+		background-color:pink;
+		border-radius: 15px;
+		margin-top: 50px;
+	}
+	#navi1{
+		height:80px;
+	}
+	.title1{
+		text-align: center;
+	}
+	.title1 span{
+		font-size: 28px;
+		display: inline-block;
+		margin-top: 24px;
+		font-family: '幼圆';
+		letter-spacing: 10px;
+		color: #6CF;
+	}
+	#navi2{
+		text-align: center;
+		background-color:gray;
+	}
+	#icon{
+		width:150px;
+		height:150px;
+		border-radius: 100%;
+		margin-top:5px;
+	}	
+	#navi3{
+		height:100px;
+		background-color:blue;
+		text-align: center;
+		font-size: 18px;
+		font-family: '仿宋';
+		
+	}
+	#navi3 #stu_name{
+		display:inline-block;
+		text-align: center;
+		margin-top: 35px;
+		width:80px;
+		height:50px;
+		font-size: 22px;
+		font-family: '幼圆';
+		color: #F86;
+	}
+	#navi3 #left_light,#navi3 #right_light{
+		width: 15px;
+		height: 15px;
+		display: inline-block;
+		border-radius: 100%;
+	}
+	
+	#navi3 #left_light{
+		background-color: red;
+	}
+	#navi3 #right_light{
+		background-color: orange;
+	}
+	#navi4{
+		height:100px;
+		text-align: center;
+	}
+	#navi4 button{
+		width: 130px;
+		height:35px;
+		margin-top: 38px;
+		margin-left: 35px;
+		font-family: '幼圆';
+		font-size: 22px;
+		background-color: gray;
+		border: 1px solid gray;
+		border-radius: 10px;
+	}
+	
+	#navi4 button:hover{
+		font-size: 22px;
+		font-family: '仿宋';
+		width: 132px;
+		height:38px;
+	}
+	
+</style>
+</head>
+<body>
+	<div id="mainFrame">
+		<div id="navi1" class="title1">
+			<span>淮师大随机点名系统</span>
+		</div>
+		<div id="navi2" >
+			<img src="E://jt.jpg" id="icon"/>
+		</div>
+		<div id="navi3">
+			<span id="left_light"></span>
+			恭喜
+			<span id="stu_name">刘蕊</span>
+			同志，喜中1000万元!!!
+			<span id="right_light"></span>
+		</div>
+		<div id="navi4">
+			<button onclick="start_name()">start</button>
+			<button onclick="end_name()">end</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+	window.onload = function(){
+		setInterval('setTagColor()',500);
+	}
+	
+	var image_time;
+	var uname_time;
+	//结束按钮
+	function end_name(){
+		clearInterval(image_time);
+		clearInterval(uname_time);
+	}
+	
+	//设置两小圆圈闪动
+	function setTagColor(){
+		var colors = ["#F0F8FF","#A52A2A","#7FFF00","#00008B","#FF8C00","#E9967A","#FF00FF","#FFD700"];
+		//随机一个颜色下标
+		var left_light_index = Math.floor(Math.random() * colors.length);
+		var right_light_index = Math.floor(Math.random() * colors.length);
+		//获取span元素
+		var left_light = document.getElementById("left_light");
+		var right_light = document.getElementById("right_light");
+			
+		left_light.style.backgroundColor = colors[left_light_index]
+		right_light.style.backgroundColor = colors[right_light_index];
+	}
+	
+	//开始点名按钮
+	function start_name(){
+		//1.通过计时器调用随机用户头像函数(注意头像和名字可以不用一一对应)
+		image_time = setInterval('randomImage()',100);
+		//2.通过 计时器控制随机用户名
+		uname_time = setInterval('randomUsername()',100);
+	}
+	
+	//随用用户头像方法
+	function randomUsername(){
+		//定义数组存放用户头像
+		var usernames = ["剑一","剑二","剑三","剑四","剑五","剑六","剑七","剑八"];
+		//随机一个头像下标
+		var uname_index = Math.floor(Math.random() * usernames.length);
+		//获取img元素
+		var uname = document.getElementById("stu_name");
+		//设置src属性值
+		uname.innerHTML = usernames[uname_index];
+	}
+	
+	//随用用户头像方法
+	function randomImage(){
+		//定义数组存放用户头像
+		var icons = ["E://jt.jpg","E://lyf1.jpg","E://vovo.jpg","E://msld.jpg","E://bmw.jpg"];
+		//随机一个头像下标
+		var img_index = Math.floor(Math.random() * icons.length);
+		//获取img元素
+		var img = document.getElementById("icon");
+		//设置src属性值
+		img.setAttribute("src",icons[img_index]);
+	}
+	
+	
+	</script>	
+</body>
+</html>
